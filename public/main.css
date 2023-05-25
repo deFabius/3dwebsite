@@ -1,0 +1,45 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#root-window {
+    height: 100%;
+}
+
+#render-target {
+    height: 100%;
+}
+
+.interface {
+    position: absolute;
+    background-color: red;
+}
+
+#top-border {
+    top: 0;
+    left: 0;
+    right:0;
+    height: 5px;
+}
+
+#bottom-border {
+    bottom: 0;
+    left:0;
+    right: 0;
+    height: 5px;
+}
+#left-border {
+    top: 0;
+    bottom: 0;
+    width:5px;
+    left: 0;
+}
+
+#right-border {
+    top: 0;
+    bottom: 0;
+    width:5px;
+    right: 0;
+}
