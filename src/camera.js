@@ -13,17 +13,28 @@ export function createCamera(gameWindow) {
   //   1,
   //   1000
   // );
-  camera.position.set(-10, 10, 10);
-  camera.lookAt(0, 0, 0);
+  camera.position.set(0, 10, 2);
+  camera.lookAt(0, 0, 2);
+  camera.rotateZ(Math.PI);
 
-  const controls = new MapControls(camera, gameWindow);
-  controls.enableDamping = true;
+  // const controls = new MapControls(camera, gameWindow);
+  // controls.enableDamping = true;
   // controls.dampingFactor = 0.01;
 
   let interfaceHover = null;
 
-  function cameraUpdate() {
-    controls.update();
+  const yAxis = new THREE.Vector3(0, 0, 1);
+
+  function cameraUpdate(player) {
+    if (player) {
+      // const worldQuaternion = new THREE.Quaternion();
+      // player.getWorldQuaternion(worldQuaternion);
+      // console.log(player, worldQuaternion);
+      // const { position, quaternion } = player;
+      // camera.rotation.z = worldQuaternion.y + Math.PI;
+      // camera.position.set(position.x, camera.position.y, position.z);
+      // camera.applyQuaternion(quaternion);
+    }
   }
 
   function onMouseMove(e) {

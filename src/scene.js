@@ -50,6 +50,7 @@ export function createScene() {
       meshes.push(mesh);
       if (mesh.userData?.id == "car") {
         player = mesh;
+        player.add(camera.camera);
       }
     });
 
@@ -169,7 +170,7 @@ export function createScene() {
         player.lookAt(tangent.add(position));
       }
     }
-    camera.cameraUpdate();
+    camera.cameraUpdate(player);
     renderer.render(scene, camera.camera);
   }
 
