@@ -26,13 +26,9 @@
     </div>
 
     <script type="module">
-      import { createScene } from "./src/scene.js";
+      import { createGame } from "./src/game.js";
 
-      window.onload = () => {
-        window.scene = createScene();
-        window.addEventListener("mousemove", window.scene.onMouseMove, false);
-        window.scene.start();
-      };
+      window.onload = createGame;
     </script>
   </body>
 </html>
