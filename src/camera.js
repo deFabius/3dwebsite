@@ -13,7 +13,7 @@ export function createCamera(gameWindow) {
   //   1,
   //   1000
   // );
-  camera.position.set(0, 10, 2);
+  camera.position.set(0, 20, 2);
   camera.lookAt(0, 0, 2);
   camera.rotateZ(Math.PI);
 

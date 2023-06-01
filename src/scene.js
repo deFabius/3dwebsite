@@ -26,23 +26,42 @@ export function createScene() {
   let path = [];
   let bezier = [];
 
-  async function initialize(city, assets) {
+  async function initialize(track, assets) {
     scene.clear();
 
-    for (let x = 0; x < city.size; x++) {
-      const column = [];
-      for (let y = 0; y < city.size; y++) {
-        const position = new THREE.Vector3(
-          -city.size / 2 + x + 0.5,
-          -0.5,
-          -city.size / 2 + y + 0.5
-        );
-        const mesh = await createAssetInstance("grass", position);
-        scene.add(mesh);
-        column.push(mesh);
-      }
-      meshes.push(column);
+    const trackGroup = new THREE.Group();
+
+    for (let i = 0; i < track.data.length; i++) {
+      const p0 = track.data[i]
+      const p1 = track.data[(i + 1) % track.data.length]
+      const v0 = new THREE.Vector2(p0[0], p0[1]);
+      const v1 = new THREE.Vector2(p1[0], p1[1]);
+      const curve = new THREE.QuadraticBezierCurve(v0,v0,v1,v1)
+      const points = curve.getPoints(50);
+      console.log(p0,p1);
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+      const trackCurve = new THREE.Line(geometry, material);
+      trackGroup.add(trackCurve);
     }
+    trackGroup.rotateX(Math.PI / 2);
+    trackGroup.scale.set(2,2,0)
+    scene.add(trackGroup);
+
+    // for (let x = 0; x < track.size; x++) {
+    //   const column = [];
+    //   for (let y = 0; y < track.size; y++) {
+    //     const position = new THREE.Vector3(
+    //       -track.size / 2 + x + 0.5,
+    //       -0.5,
+    //       -track.size / 2 + y + 0.5
+    //     );
+    //     const mesh = await createAssetInstance("grass", position);
+    //     scene.add(mesh);
+    //     column.push(mesh);
+    //   }
+    //   meshes.push(column);
+    // }
 
     assets.data.map(async ([assetId, position]) => {
       const mesh = await createAssetInstance(assetId, position);
